@@ -33,6 +33,10 @@ Route::post('/login', [AuthController::class, 'authenticating'])->middleware('gu
 // middleware utk elak user logout tp belum login (not logic)
 Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth');
 
+
+
+
+
 //middleware untuk LOGIN AUTHENTICATION: must login first
 //auth->refer to file Kernel
 Route::get('/students', [StudentController::class, 'index'])->middleware('auth');
@@ -78,13 +82,65 @@ Route::get('/student/{id}/restore', [StudentController::class, 'restore'])
 Route::get('/class', [ClassController::class, 'index'])->middleware('auth');
 Route::get('/class/{id}', [ClassController::class, 'show'])->middleware('auth');
 
+//utk button ADD NEW CLASS
+Route::get('/class-add', [ClassController::class, 'create']);
+
+//utk SEND DATA BARU KE DB & SAVE BUTTON
+Route::post('/class', [ClassController::class, 'store']);
+
+//untuk EDIT data
+Route::get('/class-edit/{id}', [ClassController::class, 'edit']);
+
+//untuk UPDATE data
+Route::put('/class/{id}', [ClassController::class, 'update']);
+
+//untuk DELETE data
+Route::get('/class-delete/{id}', [ClassController::class, 'delete']);
+
+Route::delete('/class-destroy/{id}', [ClassController::class, 'destroy']);
+
+
 //Shortcut-> type 'Routeclo' as in closure
 // Route::get('users/{id}', function ($id) {
     
 // });
 
 Route::get('/extracurricular', [ExtracurricularController::class, 'index'])->middleware('auth');
-Route::get('/extracurricular-detail/{id}', [ExtracurricularController::class, 'show'])->middleware('auth');
+Route::get('/extracurricular-detail/{id}', [ExtracurricularController::class, 'show'])
+->middleware('auth');
+
+//utk button ADD NEW EXTRACURRICULAR
+Route::get('/extracurricular-add', [ExtracurricularController::class, 'create']);
+
+//utk SEND DATA BARU KE DB & SAVE BUTTON
+Route::post('/extracurricular', [ExtracurricularController::class, 'store']);
+
+//untuk EDIT data
+Route::get('/extracurricular-edit/{id}', [ExtracurricularController::class, 'edit']);
+
+//untuk UPDATE data
+Route::put('/extracurricular/{id}', [ExtracurricularController::class, 'update']);
+
+//untuk DELETE data
+Route::get('/extracurricular-delete/{id}', [ExtracurricularController::class, 'delete']);
+
+Route::delete('/extracurricular-destroy/{id}', [ExtracurricularController::class, 'destroy']);
+
+
+
+
 
 Route::get('/teacher', [TeacherController::class, 'index'])->middleware('auth');
 Route::get('/teacher-detail/{id}', [TeacherController::class, 'show'])->middleware('auth');
+
+//utk button ADD NEW TEACHER
+Route::get('/teacher-add', [TeacherController::class, 'create']);
+
+//utk SEND DATA BARU KE DB & SAVE BUTTON
+Route::post('/teacher', [TeacherController::class, 'store']);
+
+//untuk EDIT data
+Route::get('/teacher-edit/{id}', [TeacherController::class, 'edit']);
+
+//untuk UPDATE data
+Route::put('/teacher/{id}', [TeacherController::class, 'update']);

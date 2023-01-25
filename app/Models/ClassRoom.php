@@ -2,12 +2,20 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ClassRoom extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
+
+
+
+    // data apa yg perlu diisi
+    protected $fillable = [
+        'name', 
+        'teacher_id'];
 
     //Dalam DB nama table CLASS, bukan CLASSROOM
     protected $table = 'class';

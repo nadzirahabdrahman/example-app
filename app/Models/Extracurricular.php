@@ -9,6 +9,8 @@ class Extracurricular extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name'];
+
     //many to many: many extracurricular for many students
     public function students()
     {

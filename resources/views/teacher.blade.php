@@ -6,7 +6,7 @@
 	<h1>TEACHER</h1>
 
     <div class="my-5">
-        <a href="" class="btn btn-primary">Add data</a>
+        <a href="teacher-add" class="btn btn-primary">Add new teacher</a>
 
     </div>
 
@@ -26,6 +26,7 @@
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $data->name }}</td>
                 <td><a href="teacher-detail/{{ $data->id }}">Details</a></td>
+                <td><a href="teacher-edit/{{ $data->id }}">Edit</a></td>
             </tr>
                 
             @endforeach

@@ -9,6 +9,8 @@ class Teacher extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name'];
+
     //ONE teacher HAS ONE class
     public function class()
     {
