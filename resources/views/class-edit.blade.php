@@ -29,6 +29,7 @@
 
         <div class="mb-3">
             <button class="btn btn-success" type="submit">Update</button>
+            <button class="btn btn-danger" href="/class">Cancel</button>
         </div>
     </form>
 </div>

@@ -36,7 +36,7 @@ class StudentController extends Controller
                 //search CLASS ID which has relationship with students
                 $query->where('name', 'LIKE', '%'.$keyword.'%');
             })
-            ->paginate(10);
+            ->simplePaginate(10);
         // view 10 data per page->execute 1 query only->tak dpt total data
         // $student = Student::simplePaginate(10);
         //studentList is a variable in MODEL to send the data to VIEW. 

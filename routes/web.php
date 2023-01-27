@@ -17,6 +17,8 @@ use App\Http\Controllers\ExtracurricularController;
 |
 */
 
+// FIRST LARAVEL LEARNING, TUTORIAL BY CARA FAJAR ON YOUTUBE
+
 // GET: page yg takda user input
 // POST: untuk yg ada user input shj
 
@@ -80,24 +82,40 @@ Route::get('/student/{id}/restore', [StudentController::class, 'restore'])
 
 
 Route::get('/class', [ClassController::class, 'index'])->middleware('auth');
-Route::get('/class/{id}', [ClassController::class, 'show'])->middleware('auth');
+
+Route::get('/class/{id}', [ClassController::class, 'show'])
+->middleware('auth');
 
 //utk button ADD NEW CLASS
-Route::get('/class-add', [ClassController::class, 'create']);
+Route::get('/class-add', [ClassController::class, 'create'])
+->middleware(['auth','admin']);
 
 //utk SEND DATA BARU KE DB & SAVE BUTTON
-Route::post('/class', [ClassController::class, 'store']);
+Route::post('/class', [ClassController::class, 'store'])
+->middleware(['auth','admin']);
 
 //untuk EDIT data
-Route::get('/class-edit/{id}', [ClassController::class, 'edit']);
+Route::get('/class-edit/{id}', [ClassController::class, 'edit'])
+->middleware(['auth','admin']);
 
 //untuk UPDATE data
-Route::put('/class/{id}', [ClassController::class, 'update']);
+Route::put('/class/{id}', [ClassController::class, 'update'])
+->middleware(['auth','admin']);
 
 //untuk DELETE data
-Route::get('/class-delete/{id}', [ClassController::class, 'delete']);
+Route::get('/class-delete/{id}', [ClassController::class, 'delete'])
+->middleware(['auth','admin']);
 
-Route::delete('/class-destroy/{id}', [ClassController::class, 'destroy']);
+Route::delete('/class-destroy/{id}', [ClassController::class, 'destroy'])
+->middleware(['auth','admin']);
+
+//untuk show deleted data
+Route::get('/class-deleted', [ClassController::class, 'deletedClass'])
+->middleware(['auth','admin']);
+
+//untuk restore deleted data
+Route::get('/class/{id}/restore', [ClassController::class, 'restore'])
+->middleware(['auth','admin']);
 
 
 //Shortcut-> type 'Routeclo' as in closure
@@ -105,42 +123,79 @@ Route::delete('/class-destroy/{id}', [ClassController::class, 'destroy']);
     
 // });
 
-Route::get('/extracurricular', [ExtracurricularController::class, 'index'])->middleware('auth');
+Route::get('/extracurricular', [ExtracurricularController::class, 'index'])
+->middleware('auth');
+
 Route::get('/extracurricular-detail/{id}', [ExtracurricularController::class, 'show'])
 ->middleware('auth');
 
 //utk button ADD NEW EXTRACURRICULAR
-Route::get('/extracurricular-add', [ExtracurricularController::class, 'create']);
+Route::get('/extracurricular-add', [ExtracurricularController::class, 'create'])
+->middleware(['auth','admin']);
 
 //utk SEND DATA BARU KE DB & SAVE BUTTON
-Route::post('/extracurricular', [ExtracurricularController::class, 'store']);
+Route::post('/extracurricular', [ExtracurricularController::class, 'store'])
+->middleware(['auth','admin']);
 
 //untuk EDIT data
-Route::get('/extracurricular-edit/{id}', [ExtracurricularController::class, 'edit']);
+Route::get('/extracurricular-edit/{id}', [ExtracurricularController::class, 'edit'])
+->middleware(['auth','admin']);
 
 //untuk UPDATE data
-Route::put('/extracurricular/{id}', [ExtracurricularController::class, 'update']);
+Route::put('/extracurricular/{id}', [ExtracurricularController::class, 'update'])
+->middleware(['auth','admin']);
 
 //untuk DELETE data
-Route::get('/extracurricular-delete/{id}', [ExtracurricularController::class, 'delete']);
+Route::get('/extracurricular-delete/{id}', [ExtracurricularController::class, 'delete'])
+->middleware(['auth','admin']);
 
-Route::delete('/extracurricular-destroy/{id}', [ExtracurricularController::class, 'destroy']);
+Route::delete('/extracurricular-destroy/{id}', [ExtracurricularController::class, 'destroy'])
+->middleware(['auth','admin']);
+
+//untuk show deleted data
+Route::get('/extracurricular-deleted', [ExtracurricularController::class, 'deletedEkskul'])
+->middleware(['auth','admin']);
+
+//untuk restore deleted data
+Route::get('/extracurricular/{id}/restore', [ExtracurricularController::class, 'restore'])
+->middleware(['auth','admin']);
 
 
 
 
 
 Route::get('/teacher', [TeacherController::class, 'index'])->middleware('auth');
-Route::get('/teacher-detail/{id}', [TeacherController::class, 'show'])->middleware('auth');
+
+Route::get('/teacher-detail/{id}', [TeacherController::class, 'show'])
+->middleware(['auth','admin']);
 
 //utk button ADD NEW TEACHER
-Route::get('/teacher-add', [TeacherController::class, 'create']);
+Route::get('/teacher-add', [TeacherController::class, 'create'])
+->middleware(['auth','admin']);
 
 //utk SEND DATA BARU KE DB & SAVE BUTTON
-Route::post('/teacher', [TeacherController::class, 'store']);
+Route::post('/teacher', [TeacherController::class, 'store'])
+->middleware(['auth','admin']);
 
 //untuk EDIT data
-Route::get('/teacher-edit/{id}', [TeacherController::class, 'edit']);
+Route::get('/teacher-edit/{id}', [TeacherController::class, 'edit'])
+->middleware(['auth','admin']);
 
 //untuk UPDATE data
-Route::put('/teacher/{id}', [TeacherController::class, 'update']);
+Route::put('/teacher/{id}', [TeacherController::class, 'update'])
+->middleware(['auth','admin']);
+
+//untuk DELETE data
+Route::get('/teacher-delete/{id}', [TeacherController::class, 'delete'])
+->middleware(['auth','admin']);
+
+Route::delete('/teacher-destroy/{id}', [TeacherController::class, 'destroy'])
+->middleware(['auth','admin']);
+
+//untuk show deleted data
+Route::get('/teacher-deleted', [TeacherController::class, 'deletedTeacher'])
+->middleware(['auth','admin']);
+
+//untuk restore deleted data
+Route::get('/teacher/{id}/restore', [TeacherController::class, 'restore'])
+->middleware(['auth','admin']);

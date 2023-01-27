@@ -7,15 +7,32 @@
     <style>
         th {
             width: 25px;
+            columns: 2;
+            
         }
     </style>
 
-    <h2>Teacher name: {{ $teacher->name }}</h2>
+<div class="my-3 d-flex justify-content-center">
+
+    @if($teacher->image != '')
+        <!-- retrieve student image dr folder storage/photo yg dah link -->
+        <img src="{{ asset('storage/photo-teacher/'.$teacher->image) }}" alt="" 
+        width="200px">
+    @else
+        <img src="{{ asset('images/default pp.png') }}" alt="" 
+        width="200px">
+    @endif
+    
+</div>
 
     <div class="mt-5">
         <table class="table table-bordered">
             <tr>
-                <th>Class: </th>
+                <th class="text-nowrap">Teacher name</th>
+                <td>{{ $teacher->name }}</td>
+            </tr>
+            <tr>
+                <th>Class </th>
                 <td>
                     @if($teacher->class)
                         {{ $teacher->class->name }}
@@ -25,7 +42,7 @@
                 </td>
             </tr>
             <tr>
-                <th>Student List: </th>
+                <th>Student list </th>
                 <td>
                     @if($teacher->class)
                         @foreach ($teacher->class->students as $item)

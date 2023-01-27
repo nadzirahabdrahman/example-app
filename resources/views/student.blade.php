@@ -64,11 +64,9 @@
                 <th>NIS</th>
                 <th>Class</th>
                 <th>Action</th>
-                <!-- <th>Class</th>
-                <th>Extracurricular</th>
-                <th>Homeroom Teacher</th>-->
             </tr>
         </thead>
+            
         <tbody class="table-group-divider">
             @foreach ($studentList as $data)
             <tr>
@@ -78,12 +76,13 @@
                 <td>{{ $data->nis }}</td> 
                 <td>{{ $data->class->name }}</td>
                 <td>
-                    {{-- untuk ADMIN & TEACHER shj --}}
+                    {{-- untuk STUDENT shj --}}
                     @if(Auth::user()->role_id != 1 && Auth::user()->role_id != 2)
-                        Not accessible
+                        <p class="text-danger">Not accessible for student</p>
                     @else
-                        <a class="btn btn-primary" href="student/{{ $data->id }}">Details</a>
-                        <a class="btn btn-info" href="student-edit/{{ $data->id }}">Edit</a>
+                    {{-- untuk ADMIN & TEACHER --}}
+                        <a class="btn btn-info" href="student/{{ $data->id }}">Details</a>
+                        <a class="btn btn-primary" href="student-edit/{{ $data->id }}">Edit</a>
                         
                     @endif
 

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Session;
 class ClassController extends Controller
 {
     //ClassRoom nama MODEL
-    public function index() {
+    public function index(Request $request) {
 
         //Lazy loading: sebanyak 5 kali query
         //select * from class
@@ -22,7 +22,12 @@ class ClassController extends Controller
         //select * from students where class in 1A,1B,1C,1D
         //parameter dalam with(): function dalam MODEL
         // $class = ClassRoom::with('students', 'homeroomTeacher')->get(); //select * from students where class
-        $class = ClassRoom::get();
+
+        $keyword = $request->keyword;
+
+        $class = ClassRoom::where('name', 'LIKE', '%'.$keyword.'%')
+        ->simplePaginate(4);
+
         //classList is a variable in MODEL to send the data to VIEW. 
         return view('classroom', ['classList' => $class]);
     }
@@ -87,6 +92,27 @@ class ClassController extends Controller
             //display message
             Session::flash('status', 'Success');
             Session::flash('message', 'A class has been deleted');
+        }
+
+        return redirect('/class');
+    }
+
+    //untuk view DELETED CLASS
+    public function deletedClass()
+    {
+        $deletedClass = ClassRoom::onlyTrashed()->get();
+        return view('class-deleted-list', ['class' => $deletedClass]);
+    }
+
+    //untuk RESTORE DATA from DB
+    public function restore($id)
+    {
+        $deletedClass = ClassRoom::withTrashed()->where('id', $id)->restore();
+
+        if ($deletedClass) {
+            //display alert message
+            Session::flash('status', 'Success');
+            Session::flash('message', 'A class has been restored');
         }
 
         return redirect('/class');

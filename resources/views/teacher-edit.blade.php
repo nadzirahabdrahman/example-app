@@ -15,7 +15,8 @@
         </div>
 
         <div class="mb-3">
-            <button class="btn btn-success" type="submit">Save</button>
+            <button class="btn btn-success" type="submit">Update</button>
+            <button class="btn btn-danger" href="/teacher">Cancel</button>
         </div>
     </form>
 </div>

@@ -8,10 +8,13 @@ use Illuminate\Support\Facades\Session;
 
 class ExtracurricularController extends Controller
 {
-    public function index() {
+    public function index(Request $request) {
 
         // $ekskul = Extracurricular::with('students')->get();
-        $ekskul = Extracurricular::get();
+
+        $keyword = $request->keyword;
+        $ekskul = Extracurricular::where('name', 'LIKE', '%'.$keyword.'%')
+        ->simplePaginate(10);
         //ekskulList is a variable in MODEL to send the data to VIEW. 
         return view('extracurricular', ['ekskulList' => $ekskul]);
     }
@@ -69,6 +72,27 @@ class ExtracurricularController extends Controller
             //display message
             Session::flash('status', 'Success');
             Session::flash('message', 'An extracurricular has been deleted');
+        }
+
+        return redirect('/extracurricular');
+    }
+
+    //untuk view DELETED EXTRACURRICULAR
+    public function deletedEkskul()
+    {
+        $deletedEkskul = Extracurricular::onlyTrashed()->get();
+        return view('extracurricular-deleted-list', ['ekskul' => $deletedEkskul]);
+    }
+
+    //untuk RESTORE DATA from DB
+    public function restore($id)
+    {
+        $deletedEkskul = Extracurricular::withTrashed()->where('id', $id)->restore();
+
+        if ($deletedEkskul) {
+            //display alert message
+            Session::flash('status', 'Success');
+            Session::flash('message', 'An extracurricular has been restored');
         }
 
         return redirect('/extracurricular');

@@ -7,15 +7,18 @@
     <style>
         th {
             width: 25px;
+            columns: 2;
         }
     </style>
-
-    <h2>Extracurricular name: {{ $ekskul->name }}</h2>
 
     <div class="mt-5">
         <table class="table table-bordered">
             <tr>
-                <th>Student List: </th>
+                <th class="text-nowrap">Extracurricular name</th>
+                <td>{{ $ekskul->name }}</td>
+            </tr>
+            <tr>
+                <th>Student list </th>
                 <td>
                     @foreach ($ekskul->students as $item)
                         <li>{{ $item->name }}</li>

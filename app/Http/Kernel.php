@@ -66,5 +66,6 @@ class Kernel extends HttpKernel
         //untuk ADMIN access-> refer file middleware ADMIN
         'admin' => \App\Http\Middleware\Admin::class,
         'admin-or-teacher' => \App\Http\Middleware\AdminOrTeacher::class,
+        'teacher' => \App\Http\Middleware\AdminOrTeacher::class,
     ];
 }

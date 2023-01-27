@@ -7,20 +7,24 @@
     <style>
         th {
             width: 25px;
+            columns: 2;
         }
     </style>
 
-    <h2>Class name: {{ $class->name }}</h2>
 
     <div class="mt-5">
 
         <table class="table table-bordered">
             <tr>
-                <th>Homeroom Teacher: </th>
+                <th>Class name</th>
+                <td>{{ $class->name }}</td>
+            </tr>
+            <tr>
+                <th class="text-nowrap">Homeroom teacher </th>
                 <td>{{ $class->homeroomTeacher->name }}</td>
             </tr>
             <tr>
-                <th>Student List: </th>
+                <th>Student list </th>
                 <td>
                     <ol>
                         @foreach ($class->students as $item)

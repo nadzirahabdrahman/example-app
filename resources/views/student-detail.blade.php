@@ -7,6 +7,7 @@
     <style>
         th {
             width: 25px;
+            columns: 2;
         }
     </style>
 
@@ -26,7 +27,7 @@
     <div class="mt-5 mb-5" > <!-- MT: margin top -->
     <table class="table table-bordered">
         <tr>
-            <th>Student name</th>
+            <th class="text-nowrap">Student name</th>
             <td>{{ $student->name }}</td>
         </tr>
         <tr>
