@@ -43,6 +43,8 @@
 
     <h3>Student List</h3>
 
+    <x-alert message='Welcome to student' type='success'/> 
+
     <div class="my-3 col-12 col-sm-6 col-md-5"> <!-- my: margin top & bottom -->
         <form action="" method="get">
             <div class="input-group mb-3">

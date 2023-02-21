@@ -6,6 +6,10 @@
 		<h1>HOME</h1>
 		<h2>Welcome {{ Auth::user()->name }}</h2>
 
+		{{-- panggil component blades, refer file resources/views/alerts.bladee.php or app/View/Alert.php --}}
+		{{-- tak boleh ada space between '=' --}}
+		<x-alert message='Welcome to Home, {{ Auth::user()->name }}' type='primary'/> 
+
 		{{-- view email from DB  --}}
 		{{-- {{ Auth::user()->role->name }} --}}
 
